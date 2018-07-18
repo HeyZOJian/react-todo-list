@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import TodolistItem from '../components/TodolistItem';
 import './TodolistPanel.css'
+import TextField from '@material-ui/core/TextField';
+
+
 export default class TodolistPanel extends Component {
   constructor(props) {
     super(props);
@@ -49,23 +52,28 @@ export default class TodolistPanel extends Component {
       }
     })
     items = items.map((elt, i) => {
-      return (<TodolistItem {...{ content:inputContent }} key={i}/>)
+      return (<TodolistItem {...{ content:elt.content }} key={i}/>)
     });
     console.log(items);
 
     let footer = "";
     let {inputChange, handleKeyDownPost} = this;
-    return <div className="header">
+    return <div className="container">
       <br/>
-      <input
-        type="text"
-        className="todo-input"
+      <TextField
+        id="search"
+        label="Add new Todo item"
+        type="search"
+        margin="normal"
+        // fullWidth ="true"
         value={inputContent}
         onChange={inputChange}
         onKeyDown={handleKeyDownPost}/>
-        <TodolistItem content="1"/>
-        {footer}
+      <ol>
+        {items}
+      </ol>
+      {footer}
     </div>
-   
+
   }
 }

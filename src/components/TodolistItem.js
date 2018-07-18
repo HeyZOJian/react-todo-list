@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
 import './TodolistItem.css'
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Checkbox from '@material-ui/core/Checkbox';
 export default class TodolistItem extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   content: "Parking Lot APP Refactor"
-    // }
+    // this.state = {   content: "Parking Lot APP Refactor" }
   }
   render() {
     return (
-      <li class="checked">
-        <input name="done-todo" type="checkbox" class="done-todo" checked/> {this.props.content}
-      </li>
+          <li>
+            <Checkbox
+            //   onChange={this.handleChange('checkedA')}
+            />
+            {this.props.content}
+          </li>
     );
   }
 }
