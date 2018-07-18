@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import TodolistItem from '../components/TodolistItem';
 import './TodolistPanel.css'
 import TextField from '@material-ui/core/TextField';
-
+import Button from '@material-ui/core/Button';
 
 export default class TodolistPanel extends Component {
   constructor(props) {
@@ -39,8 +39,38 @@ export default class TodolistPanel extends Component {
 
     this.setState({todoItems, inputContent: ""});
   }
+  showAllItems = () => {
+    this.setState({page: 'all'});
+  }
+  showActiveItems = () => {
+    this.setState({page: 'active'});
+  }
+  showCompleteItems = () => {
+    this.setState({page: 'complete'});
+  }
+  onToggle = (item) => {
+    let {todoItems} = this.state;
+
+    todoItems = todoItems.map(elt => {
+
+      if (elt.id === item.id) {
+        elt.hasCompleted = !elt.hasCompleted; //选择状态取反
+      }
+      return elt;
+    });
+    this.setState({todoItems})
+  }
+
   render() {
     let {todoItems, inputContent, page} = this.state;
+    let {
+      inputChange,
+      handleKeyDownPost,
+      showActiveItems,
+      showAllItems,
+      showCompleteItems,
+      onToggle
+    } = this;
     let items = todoItems.filter((element) => {
       switch (page) {
         case 'all':
@@ -52,27 +82,51 @@ export default class TodolistPanel extends Component {
       }
     })
     items = items.map((elt, i) => {
-      return (<TodolistItem {...{ content:elt.content }} key={i}/>)
+      return (<TodolistItem {...{ content:elt.content,onToggle,info:elt }} key={i}/>)
     });
-    console.log(items);
 
-    let footer = "";
-    let {inputChange, handleKeyDownPost} = this;
     return <div className="container">
       <br/>
-      <TextField
-        id="search"
-        label="Add new Todo item"
-        type="search"
-        margin="normal"
-        // fullWidth ="true"
-        value={inputContent}
-        onChange={inputChange}
-        onKeyDown={handleKeyDownPost}/>
+
+      <TextField id="search" label="Add new Todo item" type="search" margin="normal" // fullWidth ="true"
+        value={inputContent} onChange={inputChange} onKeyDown={handleKeyDownPost}/>
+      <br/>
+
+      <Button 
+      variant="contained" 
+      size="small" 
+      onClick={showAllItems}
+      style={{
+        margin: 5
+      }}>
+        All
+      </Button>
+
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        onClick={showActiveItems}
+        style={{
+        margin: 5
+      }}>
+        Active
+      </Button>
+
+      <Button
+        variant="contained"
+        color="secondary"
+        size="small"
+        onClick={showCompleteItems}
+        style={{
+        margin: 5
+      }}>
+        complete
+      </Button>
+
       <ol>
         {items}
       </ol>
-      {footer}
     </div>
 
   }

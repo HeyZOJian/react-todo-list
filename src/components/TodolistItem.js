@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import './TodolistItem.css'
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Checkbox from '@material-ui/core/Checkbox';
 export default class TodolistItem extends Component {
   constructor(props) {
@@ -10,14 +8,17 @@ export default class TodolistItem extends Component {
   }
 
   handleChange = () => {
-      let checkedClass = this.state.checkedClass?"":"checked";
+      let checkedClass = this.props.info.hasCompleted==false?"":"checked";
       this.setState({checkedClass});
+      this.props.onToggle(this.props.info);
       
   }
   render() {
+    let checkedClass = this.props.info.hasCompleted==false?"":"checked";
     return (
-      <li className={this.state.checkedClass}>
-        <Checkbox onChange={this.handleChange}/> {this.props.content}
+      <li className={checkedClass}>
+        <Checkbox checked={this.props.info.hasCompleted} onChange={this.handleChange}/> 
+        {this.props.content}
       </li>
     );
   }
