@@ -6,16 +6,19 @@ import Checkbox from '@material-ui/core/Checkbox';
 export default class TodolistItem extends Component {
   constructor(props) {
     super(props);
-    // this.state = {   content: "Parking Lot APP Refactor" }
+    this.state = { checkedClass:""}
+  }
+
+  handleChange = () => {
+      let checkedClass = this.state.checkedClass?"":"checked";
+      this.setState({checkedClass});
+      
   }
   render() {
     return (
-          <li>
-            <Checkbox
-            //   onChange={this.handleChange('checkedA')}
-            />
-            {this.props.content}
-          </li>
+      <li className={this.state.checkedClass}>
+        <Checkbox onChange={this.handleChange}/> {this.props.content}
+      </li>
     );
   }
 }
