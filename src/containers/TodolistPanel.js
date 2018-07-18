@@ -37,10 +37,25 @@ export default class TodolistPanel extends Component {
     this.setState({todoItems, inputContent: ""});
   }
   render() {
-    let items = "";
+    let {todoItems, inputContent, page} = this.state;
+    let items = todoItems.filter((element) => {
+      switch (page) {
+        case 'all':
+          return true;
+        case 'complete':
+          return element.hasCompleted;
+        case 'active':
+          return !element.hasCompleted;
+      }
+    })
+    items = items.map((elt, i) => {
+      return (<TodolistItem {...{ content:inputContent }} key={i}/>)
+    });
+    console.log(items);
+
     let footer = "";
-    let {inputContent, inputChange, handleKeyDownPost} = this;
-    return <header className="header">
+    let {inputChange, handleKeyDownPost} = this;
+    return <div className="header">
       <br/>
       <input
         type="text"
@@ -48,11 +63,9 @@ export default class TodolistPanel extends Component {
         value={inputContent}
         onChange={inputChange}
         onKeyDown={handleKeyDownPost}/>
-    </header>
-    {
-      items
-    }
-    {footer}
-
+        <TodolistItem content="1"/>
+        {footer}
+    </div>
+   
   }
 }
