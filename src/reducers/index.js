@@ -22,6 +22,8 @@ export default (state = initialState, action)=>{
         case Types.FILETER_TODO_LIST:
             visibilityFilter:action.status;
             return action.todos;
+        case Types.UPDATE_TODO_STATUS:
+            return action.todos;
         default:
             return state;
     }

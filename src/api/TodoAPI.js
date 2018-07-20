@@ -29,6 +29,15 @@ const TodoAPI = {
                 return todo.hasCompleted === true
             })
         }
+    },
+    updateTodoStatus(id){
+        return this.todos.map(todo=>{
+            if(todo.id===id){
+                todo.hasCompleted = !todo.hasCompleted;
+                return todo;
+            }
+            return todo;
+        })
     }
 }
 export default TodoAPI;

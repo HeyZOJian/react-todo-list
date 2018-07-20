@@ -15,3 +15,14 @@ export const getFilterTodoList = (status,todos) =>{
         todos
     }
 }
+
+export const updateTodoStatus = (id, todos)=>{
+    console.log("-------------------------------------");
+    console.log("| update: ");
+    console.log("-------------------------------------");
+    return {
+        type: Types.UPDATE_TODO_STATUS,
+        id,
+        todos
+    }
+}
