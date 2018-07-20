@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import './App.css';
-import TodolistPanel from './containers/TodolistPanel'
+import TodolistPanel from '../containers/TodoPanelContainer'
+import AddTodo from '../containers/AddTodo'
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo"/>
           <h1 className="App-title">TODO LIST</h1>
         </header>
+          <AddTodo/>
         <TodolistPanel/>
       </div>
     );
