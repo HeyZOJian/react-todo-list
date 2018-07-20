@@ -13,11 +13,15 @@ export default (state = initialState, action)=>{
                 todos:[
                     ...state.todos,
                     {
-                        content: action.content,
+                        id:action.id,
+                        content:action.content,
                         completed: false
                     }
                 ]
             })
+        case Types.FILETER_TODO_LIST:
+            visibilityFilter:action.status;
+            return action.todos;
         default:
             return state;
     }

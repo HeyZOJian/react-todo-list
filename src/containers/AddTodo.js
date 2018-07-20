@@ -8,7 +8,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        addTodo: (content) => dispatch(addTodo(content))
+        addTodo: (id, content) => dispatch(addTodo(id, content))
     }
 }
 

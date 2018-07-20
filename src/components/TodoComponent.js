@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import './TodolistItem.css'
+import '../index.css'
 import Checkbox from '@material-ui/core/Checkbox';
 
-export default class TodolistItem extends Component {
+export default class TodoComponent extends Component {
     constructor(props) {
         super(props);
     }
@@ -14,11 +14,10 @@ export default class TodolistItem extends Component {
                 contentEditable={editable}
                 onDoubleClick={handleDoubleClick}
                 onKeyDown={handleEnter}>
-                <Checkbox
-                    checked={hasCompleted ? 'checked' : ''}
-                    onChange={handleChange}/>
+                <input name="done-todo" type="checkbox" className="done-todo"
+                       checked={hasCompleted ? 'checked' : ''} onChange={handleChange}/>
                 {content}
             </li>
-        );
+        )
     }
 }
