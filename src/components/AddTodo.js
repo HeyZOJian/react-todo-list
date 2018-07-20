@@ -5,22 +5,14 @@ class AddTodo extends Component{
         super(props);
         this.inputContent = React.createRef();
     }
-    
+
     handleInput = ()=>{
-        console.log("-------------------------------------");
-        console.log("| inputContent: " + this.inputContent.value);
-        console.log("-------------------------------------");
+       const content = this.inputContent.current.value;
+       this.props.addTodo(content);
+       this.inputContent.current.value = ""
     }
 
     render(){
-        const {inputContent, addTodo} = this.props;
-        console.log("-------------------------------------");
-        console.log("| addTodo: " + addTodo);
-        console.log("-------------------------------------");
-        
-        console.log("-------------------------------------");
-        console.log("| inputContent: " + inputContent);
-        console.log("-------------------------------------");
         return <div>
             <input ref={this.inputContent}/>
             <button onClick={this.handleInput}>Add Todo</button>
