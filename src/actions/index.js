@@ -3,8 +3,7 @@ import * as Types from '../constants'
 export const addTodo = (todo) => {
     return {
         type: Types.ADD_TODO,
-        id:todo.id,
-        content:todo.content
+        todo:todo
     }
 }
 

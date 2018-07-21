@@ -12,9 +12,9 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        handleChange:(id)=>{
+        handleChange: (id) => {
             const todos = TodoAPI.updateTodoStatus(id);
-            dispatch(updateTodoStatus(id,todos));
+            dispatch(updateTodoStatus(id, todos));
         }
     }
 }

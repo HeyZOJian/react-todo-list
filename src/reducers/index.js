@@ -1,21 +1,18 @@
 import * as Types from '../constants'
 
 let initialState = {
-    todos:[],
-    visibilityFilter : 'SHOW_ALL'
+    todos: [],
+    visibilityFilter: 'SHOW_ALL'
 }
 
-export default (state = initialState, action)=>{
-    switch (action.type){
+export default (state = initialState, action) => {
+    switch (action.type) {
         case Types.ADD_TODO:
-            return Object.assign({},state,{
-                todos:[
+            return Object.assign({}, state, {
+                todos: [
                     ...state.todos,
-                    {
-                        id:action.id,
-                        content:action.content,
-                        completed: false
-                    }
+                    action.todo
+
                 ]
             })
         case Types.FILETER_TODO_LIST:
@@ -23,11 +20,14 @@ export default (state = initialState, action)=>{
             console.log("-------------------------------------");
             console.log("reducer-todos:" + action.todos);
             console.log("-------------------------------------");
-            return Object.assign({},state,{
-                todos:action.todos
+            return Object.assign({}, state, {
+                todos: action.todos
             })
         case Types.UPDATE_TODO_STATUS:
-            return action.todos;
+
+            return Object.assign({}, state, {
+                todos: action.todos
+            });
         default:
             return state;
     }

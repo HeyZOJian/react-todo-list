@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Todo from './Todo';
+import TodoItem from './TodoItem';
 import '../index.css'
 import TodoAPI from '../api/TodoAPI'
 
@@ -11,10 +11,10 @@ class TodolistPanel extends Component {
     render() {
         let { todos, handleChange} = this.props;
         console.log("-------------------------------------");
-        console.log("| todopanel-todos: " + this.props.todos);
+        console.log("handleChange :" + handleChange);
         console.log("-------------------------------------");
         let todoItems = todos.map(todo => {
-            return <Todo
+            return <TodoItem
                 {...todo}
                 handleChange={handleChange}
             />
