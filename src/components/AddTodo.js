@@ -10,8 +10,14 @@ class AddTodo extends Component {
 
     handleInput = () => {
         const content = this.inputContent.current.value;
-        this.props.addTodo(content);
+        if(content.trim()!="") {
+            this.props.addTodo(content);
+        }
         this.inputContent.current.value = ""
+    }
+    handleEnter = (ev) =>{
+        if(ev.keyCode !== 13) return;
+        this.handleInput();
     }
 
     render() {
@@ -20,7 +26,9 @@ class AddTodo extends Component {
                 className="input-text"
                 type="text"
                 name="ListItem"
-                ref={this.inputContent}/>
+                ref={this.inputContent}
+                onKeyDown={this.handleEnter}
+            />
             <div
                 id="button"
                 onClick={this.handleInput}>Add
