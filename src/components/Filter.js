@@ -25,7 +25,7 @@ class Filter extends Component {
                 </li>
                 <li>
                     <a href="#" data-filter="complete" className="" onClick={() => {
-                        filterTodoList(Types.SHOW_ACTIVE)
+                        filterTodoList(Types.SHOW_COMPLETED)
                     }}>Complete</a>
                 </li>
             </ul>

@@ -9,16 +9,14 @@ class TodolistPanel extends Component {
     }
 
     render() {
-        // let {visibilityFilter} = this.props;
-        // const todos = TodoAPI.filterList(visibilityFilter);
-        let {todos} = this.props;
+        let { todos, handleChange} = this.props;
         console.log("-------------------------------------");
-        console.log("| todos-1: " + this.props);
+        console.log("| todopanel-todos: " + this.props.todos);
         console.log("-------------------------------------");
         let todoItems = todos.map(todo => {
             return <Todo
                 {...todo}
-                handleChange={this.props.handleChange}
+                handleChange={handleChange}
             />
         })
 
