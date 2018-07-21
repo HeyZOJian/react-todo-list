@@ -1,8 +1,7 @@
 import * as Types from '../constants'
 
 let initialState = {
-    todos:[{id: 1, content: 'test-1', editable: false, hasCompleted: false},
-        {id: 2, content: 'test-2', editable: true, hasCompleted: true}],
+    todos:[],
     visibilityFilter : 'SHOW_ALL'
 }
 

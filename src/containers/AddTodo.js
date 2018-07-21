@@ -1,6 +1,8 @@
 import AddTodo from "../components/AddTodo";
 import {connect} from 'react-redux';
 import {addTodo} from "../actions";
+import TodoAPI from '../api/TodoAPI';
+import Todo from "../Models/Todo";
 
 const mapStateToProps = (state, props) => {
     return {}
@@ -8,7 +10,10 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        addTodo: (id, content) => dispatch(addTodo(id, content))
+        addTodo: (content) => {
+            const newTodo = new Todo(content);
+            TodoAPI.addTodo(newTodo)
+            dispatch(addTodo(newTodo))}
     }
 }
 

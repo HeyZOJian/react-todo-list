@@ -1,10 +1,10 @@
 import * as Types from '../constants'
 
-export const addTodo = (id, content) => {
+export const addTodo = (todo) => {
     return {
         type: Types.ADD_TODO,
-        id,
-        content
+        id:todo.id,
+        content:todo.content
     }
 }
 

@@ -1,8 +1,8 @@
 import * as Types from '../constants'
+import Todo from "../Models/Todo";
 
 const TodoAPI = {
-    todos: [{id: 1, content: 'test-1', editable: false, hasCompleted: false},
-        {id: 2, content: 'test-2', editable: true, hasCompleted: true}],
+    todos: [],
 
     addTodo(todo) {
         this.todos.push(todo)
@@ -17,17 +17,15 @@ const TodoAPI = {
         }
         else if (status === Types.SHOW_ACTIVE) {
             console.log("-------------------------------------");
-            console.log("| show_active: " + this.todos);
+            console.log("| show_active: " + Todo.ACTIVE);
             console.log("-------------------------------------");
-            return this.todos.filter(todo => todo.hasCompleted === false)
+            return this.todos.filter(todo => todo.status === Todo.ACTIVE)
         }
         else if (status === Types.SHOW_COMPLETED) {
             console.log("-------------------------------------");
             console.log("| show_completed: " );
             console.log("-------------------------------------");
-            return this.todos.filter(todo => {
-                return todo.hasCompleted === true
-            })
+            return this.todos.filter(todo => todo.status === Todo.COMPLETED)
         }
     },
     updateTodoStatus(id){
