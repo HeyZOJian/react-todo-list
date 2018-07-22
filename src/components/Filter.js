@@ -9,9 +9,6 @@ class Filter extends Component {
 
     render() {
         let {filterTodoList} = this.props;
-        console.log("-------------------------------------");
-        console.log("| : " + filterTodoList);
-        console.log("-------------------------------------");
         return <div>
 
             <ul id="filters">

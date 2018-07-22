@@ -1,12 +1,21 @@
 import * as Types from '../constants'
 import Todo from "../Models/Todo";
+import axios from 'axios'
 
 const TodoAPI = {
     todos: [],
     nowFilter: Types.SHOW_ALL,
+    apiUrl: 'http://localhost:8080/api/todos',
 
-    getNowFilter(){
-        return this.nowFilter;
+    getAllTodo(successCallBack){
+        axios.get(`${this.apiUrl}/search/statusOfTodos?status=completed,active`)
+            .then((response)=>{
+                this.todos = response.data._embedded.todos;
+                successCallBack(this.todos);
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
     },
 
     addTodo(todo) {

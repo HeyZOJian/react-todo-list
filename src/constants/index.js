@@ -1,3 +1,4 @@
+export const INIT = 'INIT';
 export const ADD_TODO = 'ADD_TODO';
 export const FILETER_TODO_LIST = 'FILETER_TODO_LIST';
 export const UPDATE_TODO_STATUS = 'UPDATE_TODO_STATUS';

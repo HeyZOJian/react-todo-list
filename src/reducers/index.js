@@ -1,6 +1,7 @@
 import * as Types from '../constants'
 import TodoAPI from "../api/TodoAPI";
 
+
 let initialState = {
     todos: [],
     visibilityFilter: 'SHOW_ALL'
@@ -8,6 +9,10 @@ let initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case 'INIT':
+            return Object.assign({}, state, {
+                todos: action.todos
+            });
         case Types.ADD_TODO:
             state.todos = action.todos.concat();
             return {todos:state.todos};

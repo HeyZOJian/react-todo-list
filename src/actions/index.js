@@ -1,5 +1,12 @@
 import * as Types from '../constants'
 
+export const initTodos = (todos)=>{
+    return {
+        type: Types.INIT,
+        todos
+    }
+}
+
 export const addTodo = (todos) => {
     return {
         type: Types.ADD_TODO,
