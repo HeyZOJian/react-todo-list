@@ -1,9 +1,9 @@
 import * as Types from '../constants'
 
-export const addTodo = (todo) => {
+export const addTodo = (todos) => {
     return {
         type: Types.ADD_TODO,
-        todo:todo
+        todos
     }
 }
 

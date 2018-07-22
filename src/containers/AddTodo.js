@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch, props) => {
         addTodo: (content) => {
             const newTodo = new Todo(content);
             TodoAPI.addTodo(newTodo)
-            dispatch(addTodo(newTodo))}
+            dispatch(addTodo(TodoAPI.todos))}
     }
 }
 
