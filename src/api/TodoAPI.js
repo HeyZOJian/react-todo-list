@@ -3,22 +3,20 @@ import Todo from "../Models/Todo";
 import axios from 'axios'
 
 const TodoAPI = {
-    todos: [],
-    nowFilter: Types.SHOW_ALL,
+    nowFilter: Todo.ALL,
     apiUrl: 'http://localhost:8080/api/todos',
 
     getAllTodo(successCallBack) {
         axios.get(`${this.apiUrl}/search/statusOfTodos?status=completed,active`)
             .then((response) => {
-                this.todos = response.data._embedded.todos;
-                successCallBack(this.todos);
+                successCallBack(response.data._embedded.todos);
             })
             .catch((error) => {
                 console.log(error);
             })
     },
 
-    addTodo(todo) {
+    addTodo(todo, successCallback) {
         axios.post(`${this.apiUrl}`, todo)
             .then((response) => {
                 this.todos.push(todo);
@@ -29,7 +27,10 @@ const TodoAPI = {
 
     },
 
-    filterList(status,successCallback) {
+    filterList(status, successCallback) {
+        console.log("-------------------------------------");
+        console.log(" filter:");
+        console.log("-------------------------------------");
         axios.get(`${this.apiUrl}/search/statusOfTodos?status=${status}`)
             .then((response) => {
                 this.nowFilter = status;
@@ -39,25 +40,23 @@ const TodoAPI = {
                 console.log(error);
             });
     },
-    updateTodoStatus(id) {
-        this.todos = this.todos.map(todo => {
-            if (todo.id === id) {
-                todo.status = todo.status === Todo.ACTIVE ? Todo.COMPLETED : Todo.ACTIVE;
-                return todo;
-            }
-            return todo;
-        });
-        return this.filterList(this.nowFilter);
+    updateTodoStatus(id, status,callback) {
+        axios.patch(`${this.apiUrl}/${id}`, {"status": status})
+            .then(response => {
+                this.filterList(this.nowFilter,callback);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     },
-    updateItemContent(id, content) {
-        this.todos = this.todos.map(todo => {
-            if (todo.id === id) {
-                todo.content = content;
-                return todo;
-            }
-            return todo;
-        })
-        return this.filterList(this.nowFilter);
+    updateItemContent(id, content,callback) {
+        axios.patch(`${this.apiUrl}/${id}`, {"content": content})
+            .then(response => {
+                this.filterList(this.nowFilter,callback);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 };
 export default TodoAPI;

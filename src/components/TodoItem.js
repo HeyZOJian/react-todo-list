@@ -32,7 +32,10 @@ export default class TodoItem extends Component {
                        type="checkbox"
                        className="done-todo"
                        checked={status === Todo.COMPLETED ? 'checked' : ''}
-                       onClick={() => handleChange(id)}/>
+                       onClick={() => handleChange(id,
+                           status === Todo.COMPLETED
+                               ? Todo.ACTIVE
+                               : Todo.COMPLETED)}/>
                 <span onDoubleClick={this.changeToEditable}>
                     {this.state.status === 'read' ? (
                         content

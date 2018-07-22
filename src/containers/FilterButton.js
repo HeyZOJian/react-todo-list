@@ -10,8 +10,8 @@ const mapStateToProps = (status, props) => {
 const mapDispatchToProps = (dispatch, props) => {
     return {
         filterTodoList:(status)=>{
-            const todos = TodoAPI.filterList(status,
-                    todos=>dispatch(getFilterTodoList(status,todos)));
+            TodoAPI.filterList(status,
+                    todos=>dispatch(getFilterTodoList(todos)));
         }
     }
 }

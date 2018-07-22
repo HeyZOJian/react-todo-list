@@ -14,10 +14,9 @@ export const addTodo = (todo) => {
     }
 }
 
-export const getFilterTodoList = (status,todos) =>{
+export const getFilterTodoList = (todos) =>{
     return {
         type:Types.FILETER_TODO_LIST,
-        status,
         todos
     }
 }
