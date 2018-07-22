@@ -9,13 +9,14 @@ let initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case 'INIT':
+        case Types.INIT:
             return Object.assign({}, state, {
                 todos: action.todos
             });
         case Types.ADD_TODO:
-            state.todos = action.todos.concat();
-            return {todos:state.todos};
+            return Object.assign({}, state, {
+                todos: [...state.todos,action.todo]
+            });
         case Types.FILETER_TODO_LIST:
             return Object.assign({}, state, {
                 todos: action.todos

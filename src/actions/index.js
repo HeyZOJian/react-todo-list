@@ -7,10 +7,10 @@ export const initTodos = (todos)=>{
     }
 }
 
-export const addTodo = (todos) => {
+export const addTodo = (todo) => {
     return {
         type: Types.ADD_TODO,
-        todos
+        todo
     }
 }
 

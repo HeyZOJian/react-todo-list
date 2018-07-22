@@ -19,7 +19,14 @@ const TodoAPI = {
     },
 
     addTodo(todo) {
-        this.todos.push(todo)
+        axios.post(`${this.apiUrl}`, todo)
+            .then((response)=>{
+                this.todos.push(todo);
+            })
+            .catch(error=>{
+                console.log(error);
+            })
+
     },
 
     filterList(status) {
