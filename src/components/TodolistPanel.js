@@ -10,9 +10,6 @@ class TodolistPanel extends Component {
 
     render() {
         let {todos, handleChange, updateItemContent} = this.props;
-        console.log("-------------------------------------");
-        console.log("todospanel-todos :" + todos);
-        console.log("-------------------------------------");
         let todoItems = todos.map(todo => {
             return <TodoItem
                 {...todo}

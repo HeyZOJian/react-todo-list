@@ -7,55 +7,51 @@ const TodoAPI = {
     nowFilter: Types.SHOW_ALL,
     apiUrl: 'http://localhost:8080/api/todos',
 
-    getAllTodo(successCallBack){
+    getAllTodo(successCallBack) {
         axios.get(`${this.apiUrl}/search/statusOfTodos?status=completed,active`)
-            .then((response)=>{
+            .then((response) => {
                 this.todos = response.data._embedded.todos;
                 successCallBack(this.todos);
             })
-            .catch((error)=>{
+            .catch((error) => {
                 console.log(error);
             })
     },
 
     addTodo(todo) {
         axios.post(`${this.apiUrl}`, todo)
-            .then((response)=>{
+            .then((response) => {
                 this.todos.push(todo);
             })
-            .catch(error=>{
+            .catch(error => {
                 console.log(error);
             })
 
     },
 
-    filterList(status) {
-        if (status === Types.SHOW_ALL) {
-            this.nowFilter = Types.SHOW_ALL;
-            return this.todos
-        }
-        else if (status === Types.SHOW_ACTIVE) {
-            this.nowFilter = Types.SHOW_ACTIVE;
-            return this.todos.filter(todo => todo.status === Todo.ACTIVE)
-        }
-        else if (status === Types.SHOW_COMPLETED) {
-            this.nowFilter = Types.SHOW_COMPLETED
-            return this.todos.filter(todo => todo.status === Todo.COMPLETED)
-        }
+    filterList(status,successCallback) {
+        axios.get(`${this.apiUrl}/search/statusOfTodos?status=${status}`)
+            .then((response) => {
+                this.nowFilter = status;
+                successCallback(response.data._embedded.todos);
+            })
+            .catch(error => {
+                console.log(error);
+            });
     },
     updateTodoStatus(id) {
         this.todos = this.todos.map(todo => {
             if (todo.id === id) {
-                todo.status = todo.status==Todo.ACTIVE?Todo.COMPLETED:Todo.ACTIVE;
+                todo.status = todo.status === Todo.ACTIVE ? Todo.COMPLETED : Todo.ACTIVE;
                 return todo;
             }
             return todo;
         });
         return this.filterList(this.nowFilter);
     },
-    updateItemContent(id,content){
-        this.todos = this.todos.map(todo=>{
-            if(todo.id===id){
+    updateItemContent(id, content) {
+        this.todos = this.todos.map(todo => {
+            if (todo.id === id) {
                 todo.content = content;
                 return todo;
             }

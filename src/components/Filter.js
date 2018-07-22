@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import * as Types from '../constants'
+import Todo from "../Models/Todo";
 
 class Filter extends Component {
     constructor(props) {
@@ -13,16 +14,16 @@ class Filter extends Component {
 
             <ul id="filters">
                 <li>
-                    <a href="#" data-filter="all" className="all" onClick={() => filterTodoList(Types.SHOW_ALL)}>ALL</a>
+                    <a href="#" data-filter="all" className="all" onClick={() => filterTodoList(Todo.ALL)}>ALL</a>
                 </li>
                 <li>
                     <a href="#" data-filter="active" className="active" onClick={() => {
-                        filterTodoList(Types.SHOW_ACTIVE)
+                        filterTodoList(Todo.ACTIVE)
                     }}>Active</a>
                 </li>
                 <li>
                     <a href="#" data-filter="complete" className="" onClick={() => {
-                        filterTodoList(Types.SHOW_COMPLETED)
+                        filterTodoList(Todo.COMPLETED)
                     }}>Complete</a>
                 </li>
             </ul>

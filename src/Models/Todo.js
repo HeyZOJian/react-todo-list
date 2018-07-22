@@ -15,7 +15,7 @@ export default class Todo{
     }
 
     static get ALL() {
-        return "all";
+        return "completed,active";
     }
 
 
