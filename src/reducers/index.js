@@ -1,4 +1,5 @@
 import * as Types from '../constants'
+import TodoAPI from "../api/TodoAPI";
 
 let initialState = {
     todos: [],
@@ -8,23 +9,24 @@ let initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case Types.ADD_TODO:
+           console.log("-------------------------------------");
+           console.log("add todo :" + state.todos);
+           console.log("-------------------------------------");
             return Object.assign({}, state, {
                 todos: [
                     ...state.todos,
                     action.todo
-
                 ]
             })
         case Types.FILETER_TODO_LIST:
-            visibilityFilter:action.status;
-            console.log("-------------------------------------");
-            console.log("reducer-todos:" + action.todos);
-            console.log("-------------------------------------");
             return Object.assign({}, state, {
                 todos: action.todos
             })
         case Types.UPDATE_TODO_STATUS:
-
+            return Object.assign({}, state, {
+                todos: action.todos
+            });
+        case Types.UPDATE_TODO_CONTENT:
             return Object.assign({}, state, {
                 todos: action.todos
             });

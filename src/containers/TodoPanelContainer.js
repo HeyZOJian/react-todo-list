@@ -1,7 +1,7 @@
 import TodolistPanel from "../components/TodolistPanel";
 import {connect} from 'react-redux';
 import TodoAPI from '../api/TodoAPI'
-import {updateTodoStatus} from '../actions'
+import {updateTodoStatus, updateItemContent} from '../actions'
 
 const mapStateToProps = (state, props) => {
     return {
@@ -14,7 +14,11 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         handleChange: (id) => {
             const todos = TodoAPI.updateTodoStatus(id);
-            dispatch(updateTodoStatus(id, todos));
+            dispatch(updateTodoStatus(todos));
+        },
+        updateItemContent :(id, content)=>{
+            const todos = TodoAPI.updateItemContent(id,content);
+            dispatch(updateItemContent(todos));
         }
     }
 }

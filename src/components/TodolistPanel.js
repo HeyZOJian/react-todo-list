@@ -9,7 +9,7 @@ class TodolistPanel extends Component {
     }
 
     render() {
-        let { todos, handleChange} = this.props;
+        let {todos, handleChange, updateItemContent} = this.props;
         console.log("-------------------------------------");
         console.log("handleChange :" + handleChange);
         console.log("-------------------------------------");
@@ -17,6 +17,7 @@ class TodolistPanel extends Component {
             return <TodoItem
                 {...todo}
                 handleChange={handleChange}
+                updateItemContent={updateItemContent}
             />
         })
 
