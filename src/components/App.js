@@ -20,10 +20,8 @@ class App extends Component {
                         </div>
                         <AddTodo/>
                         <br/>
-                        <ol id="items">
                             <Route strict exact path="/" component={TodolistPanel}/>
                             <Route strict path="/:status" component={TodolistPanel}/>
-                        </ol>
                         <Filter/>
 
                     </div>

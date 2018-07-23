@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import Button from '@material-ui/core/Button';
 import '../index.css'
+import { Input } from 'antd';
+import 'antd/dist/antd.css';
+import { Button } from 'antd';
+
 
 class AddTodo extends Component {
     constructor(props) {
@@ -22,13 +25,22 @@ class AddTodo extends Component {
 
     render() {
         return <div>
-            <input
-                className="input-text"
-                type="text"
-                name="ListItem"
+
+            <Input
+                size="large"
+                placeholder="Add new Todo"
                 ref={this.inputContent}
                 onKeyDown={this.handleEnter}
             />
+            <Button type="primary" shape="circle" icon="add" size="large" onClick={this.handleInput} />
+
+            {/*<input*/}
+                {/*className="input-text"*/}
+                {/*type="text"*/}
+                {/*name="ListItem"*/}
+                {/*ref={this.inputContent}*/}
+                {/*onKeyDown={this.handleEnter}*/}
+            {/*/>*/}
             <div
                 id="button"
                 onClick={this.handleInput}>Add

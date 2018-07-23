@@ -2,6 +2,7 @@ import TodolistPanel from "../components/TodolistPanel";
 import {connect} from 'react-redux';
 import TodoAPI from '../api/TodoAPI'
 import {updateTodoStatus, updateItemContent, getFilterTodoList} from '../actions'
+import Todo from "../Models/Todo";
 
 const mapStateToProps = (state, props) => {
 
@@ -12,6 +13,7 @@ const mapStateToProps = (state, props) => {
 
     let todos = [];
     if (state.todos !== undefined) {
+        TodoAPI.nowFilter = status;
         todos = state.todos.filter(todo => {
             if (status === undefined) return true;
             return todo.status === status;
