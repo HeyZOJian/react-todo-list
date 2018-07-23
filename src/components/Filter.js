@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import * as Types from '../constants'
 import Todo from "../Models/Todo";
 import TodoAPI from "../api/TodoAPI";
-import {Badge} from 'antd';
-import {Button} from 'antd';
-import {Row, Col} from 'antd';
+import { Breadcrumb } from 'antd';
 
 class Filter extends Component {
     constructor(props) {
@@ -16,37 +14,11 @@ class Filter extends Component {
         console.log("-------------------------------------");
         console.log("|TodoAPI.nowFilter : " + TodoAPI.nowFilter);
         console.log("-------------------------------------");
-        return <Row gutter={16}>
-                <Col span={8}>
-                    <Badge count={4}>
-                        <Button type="primary">
-                            <a href="/" data-filter="all" className={TodoAPI.nowFilter === undefined ? 'selected' : ''}
-                               onClick={() => filterTodoList(Todo.ALL)}>ALL</a>
-                        </Button>
-                    </Badge>
-                </Col>
-                <Col span={8}>
-                    <Badge count={4}>
-                        <Button>
-                            <a href="active" data-filter="active"
-                               className={TodoAPI.nowFilter === 'active' ? 'selected' : ''}
-                               onClick={() => {
-                                   filterTodoList(Todo.ACTIVE)
-                               }}>Active</a>
-                        </Button>
-                    </Badge>
-                </Col>
-                <Col span={8}>
-                    <Badge count={4}>
-                        <Button>
-                            <a href="completed" data-filter="complete"
-                               className={TodoAPI.nowFilter === 'completed' ? 'selected' : ''} onClick={() => {
-                                filterTodoList(Todo.COMPLETED)
-                            }}>Complete</a>
-                        </Button>
-                    </Badge>
-                </Col>
-            </Row>
+        return <Breadcrumb>
+            <Breadcrumb.Item onClick={() => filterTodoList(Todo.ALL)}><a href="../">All</a></Breadcrumb.Item>
+            <Breadcrumb.Item onClick={() => filterTodoList(Todo.ACTIVE)}><a href="/active">Active</a></Breadcrumb.Item>
+            <Breadcrumb.Item onClick={() => filterTodoList(Todo.COMPLETED)}><a href="/completed">Completed</a></Breadcrumb.Item>
+        </Breadcrumb>
     }
 }
 

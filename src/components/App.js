@@ -5,8 +5,9 @@ import AddTodo from '../containers/AddTodo';
 import Filter from '../containers/FilterButton';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Row, Col} from 'antd';
-import { Tabs } from 'antd';
-import { Divider } from 'antd';
+import {Icon} from 'antd';
+import {Divider} from 'antd';
+
 class App extends Component {
 
     render() {
@@ -25,21 +26,18 @@ class App extends Component {
                                         </p>
                                     </div>
                                     <AddTodo/>
-
+                                    <br/>
+                                    <Filter/>
                                     <Divider/>
-                                    {/*<Filter/>*/}
                                     <Route strict exact path="/" component={TodolistPanel}/>
                                     <Route strict path="/:status" component={TodolistPanel}/>
                                 </div>
                             </div>
                         </Router>
                     </Col>
-                    <Col span={4}></Col>
                 </Row>
             </div>
-
         );
-
     }
 }
 
