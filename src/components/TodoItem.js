@@ -35,7 +35,7 @@ export default class TodoItem extends Component {
                     onClick={() => handleChange(id,
                         status === Todo.COMPLETED
                             ? Todo.ACTIVE
-                            : Todo.COMPLETED)}></Radio>
+                            : Todo.COMPLETED)}/>
                 <span onDoubleClick={this.changeToEditable}>
                     {this.state.status === 'read' ? (
                         content

@@ -11,9 +11,10 @@ const mapStateToProps = (state, props) => {
         status = props.match.params.status;
     }
 
+
     let todos = [];
     if (state.todos !== undefined) {
-        TodoAPI.nowFilter = status;
+        TodoAPI.nowFilter = status===undefined?Todo.ALL:status;
         todos = state.todos.filter(todo => {
             if (status === undefined) return true;
             return todo.status === status;

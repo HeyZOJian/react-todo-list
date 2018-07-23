@@ -40,10 +40,13 @@ const TodoAPI = {
                 console.log(error);
             });
     },
-    updateTodoStatus(id, status,callback) {
+    updateTodoStatus(id, status,successCallback) {
         axios.patch(`${this.apiUrl}/${id}`, {"status": status})
             .then(response => {
-                this.filterList(this.nowFilter,callback);
+                console.log("-------------------------------------");
+                console.log("nowFilter :" + this.nowFilter);
+                console.log("-------------------------------------");
+                this.filterList(this.nowFilter,successCallback);
             })
             .catch(error => {
                 console.log(error);

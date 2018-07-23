@@ -10,6 +10,9 @@ let initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case Types.INIT:
+            console.log("-------------------------------------");
+            console.log("reducer-init :");
+            console.log("-------------------------------------");
             return Object.assign({}, state, {
                 todos: action.todos
             });
