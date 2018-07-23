@@ -12,9 +12,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         addTodo: (content) => {
             const newTodo = new Todo(content);
-            TodoAPI.addTodo(newTodo);
-            // dispatch(addTodo(newTodo))
-            TodoAPI.getAllTodo(todos => dispatch(initTodos(todos)));
+            TodoAPI.addTodo(newTodo,
+               todos => dispatch(initTodos(todos)));
+            ;
         }
     }
 }

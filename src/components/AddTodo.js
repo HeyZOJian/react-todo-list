@@ -1,51 +1,60 @@
 import React, {Component} from 'react';
 import '../index.css'
-import { Input } from 'antd';
+import {Input} from 'antd';
 import 'antd/dist/antd.css';
-import { Button } from 'antd';
-
+import {Button} from 'antd';
+import {Row, Col} from 'antd';
 
 class AddTodo extends Component {
     constructor(props) {
         super(props);
-        this.inputContent = React.createRef();
+        this.state={inputContent:""};
     }
 
-    handleInput = () => {
-        const content = this.inputContent.current.value;
-        if(content.trim()!="") {
+    handleChange(e) {
+        this.setState({
+            inputContent: e.target.value
+        })
+    }
+
+    handleInput = (ev) => {
+        const content = this.state.inputContent;
+        if (ev.keyCode !== 13) return;
+        if (content.trim() !== "") {
             this.props.addTodo(content);
         }
-        this.inputContent.current.value = ""
-    }
-    handleEnter = (ev) =>{
-        if(ev.keyCode !== 13) return;
-        this.handleInput();
+        this.setState({inputContent:""});
+    };
+
+    handleClick = ()=>{
+        const content = this.state.inputContent;
+        if (content.trim() !== "") {
+            this.props.addTodo(content);
+        }
+        this.setState({inputContent:""});
     }
 
     render() {
-        return <div>
-
-            <Input
-                size="large"
-                placeholder="Add new Todo"
-                ref={this.inputContent}
-                onKeyDown={this.handleEnter}
-            />
-            <Button type="primary" shape="circle" icon="add" size="large" onClick={this.handleInput} />
-
-            {/*<input*/}
-                {/*className="input-text"*/}
-                {/*type="text"*/}
-                {/*name="ListItem"*/}
-                {/*ref={this.inputContent}*/}
-                {/*onKeyDown={this.handleEnter}*/}
-            {/*/>*/}
-            <div
-                id="button"
-                onClick={this.handleInput}>Add
-            </div>
-        </div>
+        return <Row gutter={8}>
+            <Col span={15}>
+                <Input
+                    size="large"
+                    value={this.state.inputContent}
+                    placeholder="Add new Todo"
+                    onChange={(e) => this.handleChange(e)}
+                    onKeyDown={this.handleInput}
+                />
+            </Col>
+            <Col span={3}>
+                <Button
+                    type="primary"
+                    icon="plus"
+                    size="large"
+                    onClick={this.handleClick}>
+                    Add Todo
+                </Button>
+            </Col>
+        </Row>
     }
 }
 

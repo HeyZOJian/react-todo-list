@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import '../index.css'
 import Checkbox from '@material-ui/core/Checkbox';
 import Todo from '../Models/Todo';
+import {Radio} from 'antd';
+
 
 export default class TodoItem extends Component {
     constructor(props) {
@@ -28,14 +30,12 @@ export default class TodoItem extends Component {
         return (
             <li style={{textDecoration: status === Todo.COMPLETED ? 'line-through' : 'none'}}
                 contentEditable={editable}>
-                <input name="done-todo"
-                       type="checkbox"
-                       className="done-todo"
-                       checked={status === Todo.COMPLETED ? 'checked' : ''}
-                       onClick={() => handleChange(id,
-                           status === Todo.COMPLETED
-                               ? Todo.ACTIVE
-                               : Todo.COMPLETED)}/>
+                <Radio
+                    checked={status === Todo.COMPLETED}
+                    onClick={() => handleChange(id,
+                        status === Todo.COMPLETED
+                            ? Todo.ACTIVE
+                            : Todo.COMPLETED)}></Radio>
                 <span onDoubleClick={this.changeToEditable}>
                     {this.state.status === 'read' ? (
                         content
@@ -47,6 +47,7 @@ export default class TodoItem extends Component {
                             this.updateItem(e, id, e.currentTarget.value)
                         }/>)}
                 </span>
+
             </li>
         )
     }

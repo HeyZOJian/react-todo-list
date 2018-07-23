@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const TodoAPI = {
     nowFilter: Todo.ALL,
-    apiUrl: 'http://localhost:9999/api/todos',
+    apiUrl: 'http://localhost:8080/api/todos',
 
     getAllTodo(successCallBack) {
         axios.get(`${this.apiUrl}/search/statusOfTodos?status=completed,active`)
@@ -19,7 +19,7 @@ const TodoAPI = {
     addTodo(todo, successCallback) {
         axios.post(`${this.apiUrl}`, todo)
             .then((response) => {
-                this.todos.push(todo);
+                this.getAllTodo(successCallback);
             })
             .catch(error => {
                 console.log(error);
