@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const TodoAPI = {
     nowFilter: Todo.ALL,
-    apiUrl: 'http://localhost:8080/api/todos',
+    apiUrl: 'http://localhost:9999/api/todos',
 
     getAllTodo(successCallBack) {
         axios.get(`${this.apiUrl}/search/statusOfTodos?status=completed,active`)

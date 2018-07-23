@@ -14,15 +14,15 @@ class Filter extends Component {
 
             <ul id="filters">
                 <li>
-                    <a href="#" data-filter="all" className="all" onClick={() => filterTodoList(Todo.ALL)}>ALL</a>
+                    <a href="../" data-filter="all" className="all" onClick={() => filterTodoList(Todo.ALL)}>ALL</a>
                 </li>
                 <li>
-                    <a href="#" data-filter="active" className="active" onClick={() => {
+                    <a href="active" data-filter="active" className="active" onClick={() => {
                         filterTodoList(Todo.ACTIVE)
                     }}>Active</a>
                 </li>
                 <li>
-                    <a href="#" data-filter="complete" className="" onClick={() => {
+                    <a href="completed" data-filter="complete" className="" onClick={() => {
                         filterTodoList(Todo.COMPLETED)
                     }}>Complete</a>
                 </li>

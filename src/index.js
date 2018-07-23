@@ -9,6 +9,7 @@ import {initTodos} from "./actions";
 
 const store = createStore(rootReducer)
 const rootEl = document.getElementById('root')
+
 TodoAPI.getAllTodo(todos => {
     return store.dispatch(initTodos(todos))
 });

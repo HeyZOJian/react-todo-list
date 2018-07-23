@@ -4,7 +4,6 @@ import Filter from "../components/Filter";
 import {getFilterTodoList} from '../actions'
 
 const mapStateToProps = (status, props) => {
-
 }
 
 const mapDispatchToProps = (dispatch, props) => {

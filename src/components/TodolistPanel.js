@@ -11,11 +11,11 @@ class TodolistPanel extends Component {
     render() {
         let {todos, handleChange, updateItemContent} = this.props;
         let todoItems = todos.map(todo => {
-            return <TodoItem
-                {...todo}
-                handleChange={handleChange}
-                updateItemContent={updateItemContent}
-            />
+                return <TodoItem
+                    {...todo}
+                    handleChange={handleChange}
+                    updateItemContent={updateItemContent}
+                />
         })
 
         return <div>
